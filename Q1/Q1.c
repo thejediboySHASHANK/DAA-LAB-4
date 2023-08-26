@@ -120,6 +120,19 @@ int main() {
 
         fclose(inputFile);
 
+        // Determine the scenario based on the order of input data
+        int isAscending = 1;
+        int isDescending = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i] < arr[i - 1]) {
+                isAscending = 0;
+            }
+            if (arr[i] > arr[i - 1]) {
+                isDescending = 0;
+            }
+        }
+
         printf("Before Sorting: ");
         printArray(arr, n);
 
@@ -134,6 +147,16 @@ int main() {
         printf("After Sorting: ");
         printArray(arr, n);
 
+        printf("Number of Comparisons: %lld\n", comparisons);
+
+        // Determine the scenario based on the order of input data
+        if (isAscending) {
+            printf("Scenario: Best-case (Ascending)\n");
+        } else if (isDescending) {
+            printf("Scenario: Worst-case (Descending)\n");
+        } else {
+            printf("Scenario: Average-case (Random)\n");
+        }
 
         for (int i = 0; i < n; i++) {
             fprintf(outputFile, "%d ", arr[i]);
